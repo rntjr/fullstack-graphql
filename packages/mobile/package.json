@@ -1,0 +1,27 @@
+{
+  "name": "@fullstack-graphql/mobile",
+  "version": "0.0.1",
+  "description": "The Blank project template includes the minimum dependencies to run and an empty root component.",
+  "main": "__generated__/AppEntry.js",
+  "scripts": {
+    "android": "expo start --android",
+    "eject": "expo eject",
+    "ios": "expo start --ios",
+    "start": "expo start",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "expo": "~38.0.8",
+    "expo-status-bar": "^1.0.2",
+    "expo-yarn-workspaces": "^1.2.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
+    "react-native-web": "~0.11.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "@types/react": "^16.9.49",
+    "@types/react-native": "~0.62.13"
+  }
+}

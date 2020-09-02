@@ -1,0 +1,60 @@
+{
+  "name": "fullstack-graphql",
+  "version": "0.0.1",
+  "private": true,
+  "repository": "git@github.com:rntjr/fullstack-graphql.git",
+  "license": "MIT",
+  "author": "Renato Junior <48002341+rntjr@users.noreply.github.com>",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "postinstall": "cd ./packages/mobile && expo-yarn-workspaces postinstall",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix",
+    "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix"
+    ],
+    "*package.json": [
+      "sort-package-json"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
+    "@types/jest": "^26.0.13",
+    "babel-loader": "^8.1.0",
+    "commitizen": "^4.2.1",
+    "css-loader": "^4.2.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "html-webpack-plugin": "^4.4.1",
+    "husky": "^4.2.5",
+    "jest": "^26.4.2",
+    "lint-staged": "^10.2.13",
+    "sass-loader": "^10.0.1",
+    "sort-package-json": "^1.44.0",
+    "style-loader": "^1.2.1",
+    "ts-jest": "^26.3.0",
+    "typescript": "^4.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
