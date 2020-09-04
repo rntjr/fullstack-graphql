@@ -2,5 +2,10 @@
   "name": "@fullstack-graphql/server",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "index.js"
+  "main": "index.js",
+  "dependencies": {
+    "@prisma/cli": "^2.6.2",
+    "apollo-server": "^2.17.0",
+    "graphql": "^15.3.0"
+  }
 }
