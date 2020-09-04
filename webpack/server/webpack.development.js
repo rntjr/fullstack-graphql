@@ -1,18 +1,16 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const merge = require('webpack-merge')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { merge } = require('webpack-merge')
 const nodeExternals = require('webpack-node-externals')
 const path = require('path')
 const webpack = require('webpack')
 
 const common = require('./webpack.config.js')
 
-const rootDir = path(__dirname, '..', '..', 'packages', 'server')
-
-module.exports = merge.smart(common, {
+module.exports = merge(common, {
   devtool: 'inline-source-map',
   entry: [
     'webpack/hot/poll?1000',
-    path.join(__dirname, rootDir, 'src', 'main.ts')
+    path.join(__dirname, '..', '..', 'packages', 'server', 'src', 'main.ts')
   ],
   externals: [
     nodeExternals({

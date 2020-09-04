@@ -3,7 +3,7 @@
     "jsx": "react",
     "target": "es2017",
     "module": "commonjs",
-    "noEmit": true,
+    "noEmit": false,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": true,

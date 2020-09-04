@@ -1,7 +1,5 @@
 const path = require('path')
 
-const rootDir = path(__dirname, '..', '..', 'packages', 'server')
-
 module.exports = {
   module: {
     rules: [
@@ -14,7 +12,7 @@ module.exports = {
   },
   output: {
     filename: 'server.js',
-    path: path.resolve(__dirname, rootDir, 'dist')
+    path: path.resolve(__dirname, '..', '..', 'dist')
   },
   resolve: {
     extensions: ['.ts', '.js']
