@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const { merge } = require('webpack-merge')
 const common = require('./webpack.config.js')
-const { render } = require('react-dom')
 
 const rootPath = path.resolve(__dirname, '..', '..', 'packages')
 const rootDir = path.resolve(__dirname, '..', '..')

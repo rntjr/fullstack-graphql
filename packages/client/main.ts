@@ -22,7 +22,7 @@ function createWindow() {
     console.log('Server index.html')
     mainWindow.loadURL(
       url.format({
-        pathname: path.join(distDir, 'renderer/index.html'),
+        pathname: path.join(distDir, 'renderer', 'index.html'),
         protocol: 'file:',
         slashes: true
       })
