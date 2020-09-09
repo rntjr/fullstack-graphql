@@ -2,7 +2,7 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const url = require('url')
 // const { autoUpdater } = require('electron-updater')
-const distDir = path.resolve(__dirname, '..', '..', '..', 'dist', 'desktop')
+const distDir = path.resolve(__dirname, '..', '..', '..', 'dist', 'client')
 
 function createWindow() {
   // Create the browser window.

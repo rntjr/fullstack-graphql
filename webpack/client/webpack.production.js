@@ -7,16 +7,16 @@ const common = require('./webpack.config.js')
 const rootPath = path.resolve(__dirname, '..', '..', 'packages')
 const rootDir = path.resolve(__dirname, '..', '..')
 
-const electronConfig = {
-  mode: 'development',
+const mainConfig = {
+  mode: 'production',
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
   },
   devtool: 'source-map',
-  entry: path.resolve(rootPath, 'desktop', 'main.ts'),
+  entry: path.resolve(rootPath, 'client', 'main.ts'),
   target: 'electron-main',
   output: {
-    path: path.resolve(rootDir, 'dist', 'desktop'),
+    path: path.resolve(rootDir, 'dist', 'client'),
     filename: '[name].js'
   },
   /**
@@ -30,17 +30,17 @@ const electronConfig = {
   }
 }
 
-const reactConfig = {
-  mode: 'development',
+const rendererConfig = {
+  mode: 'production',
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     mainFields: ['main', 'module', 'browser']
   },
   entry: path.resolve(rootPath, 'web', 'src', 'index.tsx'),
-  // target: 'electron-renderer',
+  target: 'electron-renderer',
   devtool: 'source-map',
   devServer: {
-    contentBase: path.join(rootPath, 'dist', 'desktop', 'renderer'),
+    contentBase: path.join(rootDir, 'dist', 'client', 'renderer'),
     historyApiFallback: true,
     compress: true,
     hot: true,
@@ -48,7 +48,7 @@ const reactConfig = {
     publicPath: '/'
   },
   output: {
-    path: path.resolve(rootPath, 'dist', 'desktop', 'renderer'),
+    path: path.resolve(rootDir, 'dist', 'client', 'renderer'),
     filename: 'js/[name].js',
     publicPath: './'
   },
@@ -56,11 +56,11 @@ const reactConfig = {
     new HtmlWebpackPlugin({
       template: path.resolve(rootPath, 'web', 'public', 'index.html')
     }),
-    'development' && new ReactRefreshWebpackPlugin()
+    'production' && new ReactRefreshWebpackPlugin()
   ].filter(Boolean)
 }
 
 const isElectron =
-  process.env.IS_ELECTRON !== 'react' ? electronConfig : reactConfig
+  process.env.IS_ELECTRON !== 'renderer' ? mainConfig : rendererConfig
 
 module.exports = merge(common, isElectron)

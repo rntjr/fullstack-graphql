@@ -3,20 +3,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const { merge } = require('webpack-merge')
 const common = require('./webpack.config.js')
+const { render } = require('react-dom')
 
 const rootPath = path.resolve(__dirname, '..', '..', 'packages')
 const rootDir = path.resolve(__dirname, '..', '..')
 
-const electronConfig = {
-  mode: 'production',
+const mainConfig = {
+  mode: 'development',
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
   },
   devtool: 'source-map',
-  entry: path.resolve(rootPath, 'desktop', 'main.ts'),
+  entry: path.resolve(rootPath, 'client', 'main.ts'),
   target: 'electron-main',
   output: {
-    path: path.resolve(rootDir, 'dist', 'desktop'),
+    path: path.resolve(rootDir, 'dist', 'client'),
     filename: '[name].js'
   },
   /**
@@ -30,17 +31,17 @@ const electronConfig = {
   }
 }
 
-const reactConfig = {
-  mode: 'production',
+const rendererConfig = {
+  mode: 'development',
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     mainFields: ['main', 'module', 'browser']
   },
   entry: path.resolve(rootPath, 'web', 'src', 'index.tsx'),
-  // target: 'electron-renderer',
+  target: 'electron-renderer',
   devtool: 'source-map',
   devServer: {
-    contentBase: path.join(rootDir, 'dist', 'desktop', 'renderer'),
+    contentBase: path.join(rootPath, 'dist', 'client', 'renderer'),
     historyApiFallback: true,
     compress: true,
     hot: true,
@@ -48,7 +49,7 @@ const reactConfig = {
     publicPath: '/'
   },
   output: {
-    path: path.resolve(rootDir, 'dist', 'desktop', 'renderer'),
+    path: path.resolve(rootPath, 'dist', 'client', 'renderer'),
     filename: 'js/[name].js',
     publicPath: './'
   },
@@ -56,11 +57,11 @@ const reactConfig = {
     new HtmlWebpackPlugin({
       template: path.resolve(rootPath, 'web', 'public', 'index.html')
     }),
-    'production' && new ReactRefreshWebpackPlugin()
+    'development' && new ReactRefreshWebpackPlugin()
   ].filter(Boolean)
 }
 
 const isElectron =
-  process.env.IS_ELECTRON !== 'react' ? electronConfig : reactConfig
+  process.env.IS_ELECTRON !== 'renderer' ? mainConfig : rendererConfig
 
 module.exports = merge(common, isElectron)
