@@ -1,8 +1,5 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
-const url = require('url')
-// const { autoUpdater } = require('electron-updater')
-const distDir = path.resolve(__dirname, '..', '..', '..', 'dist', 'client')
 
 function createWindow() {
   // Create the browser window.
@@ -10,24 +7,25 @@ function createWindow() {
     width: 1280,
     height: 720,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      webSecurity: false
     }
   })
 
   // and load the index.html of the app.
-  if (process.env.NODE_ENV === 'development') {
-    console.log('Server localhost:4000')
-    mainWindow.loadURL('http://localhost:4000')
-  } else {
-    console.log('Server index.html')
-    mainWindow.loadURL(
-      url.format({
-        pathname: path.join(distDir, 'renderer', 'index.html'),
-        protocol: 'file:',
-        slashes: true
-      })
-    )
-  }
+  mainWindow.loadURL(
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:4000'
+      : `file://${path.resolve(
+          __dirname,
+          '..',
+          '..',
+          'dist',
+          'client',
+          'renderer',
+          'index.html'
+        )}`
+  )
 }
 
 app.whenReady().then(createWindow)
