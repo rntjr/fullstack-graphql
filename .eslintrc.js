@@ -26,7 +26,10 @@ module.exports = {
     'prettier/prettier': 'error',
     '@typescript-eslint/no-var-requires': 0,
     'import/no-extraneous-dependencies': 'off',
-    'space-before-function-paren': ['error', 'never']
+    'space-before-function-paren': [
+      'error',
+      { anonymous: 'always', named: 'never', asyncArrow: 'always' }
+    ]
   },
   settings: {
     'import/resolver': {

@@ -1,7 +1,8 @@
 module.exports = {
   semi: false,
   singleQuote: true,
-  arrowParens: 'avoid',
+  arrowParens: 'always',
   trailingComma: 'none',
-  endOfLine: 'auto'
+  endOfLine: 'auto',
+  parser: 'babel'
 }
