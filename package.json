@@ -48,6 +48,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
+      "eslint .",
       "eslint --fix"
     ],
     "*package.json": [

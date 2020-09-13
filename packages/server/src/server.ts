@@ -4,7 +4,9 @@ import express from 'express'
 import cors from 'cors'
 import compression from 'compression'
 
-const typeDefs = gql`
+import { context, typeDefs, resolvers } from './GraphQL'
+
+/* const typeDefs = gql`
   type Query {
     helloWorld: String!
   }
@@ -15,14 +17,14 @@ const resolvers: IResolvers = {
       return '👋 Hello world! 👋'
     }
   }
-}
+} */
 
 // Iniciando express
 const app = express()
 app.use('*', cors())
 app.use(compression())
 // Iniciando Apollo
-const server = new ApolloServer({ typeDefs, resolvers })
+const server = new ApolloServer({ typeDefs, resolvers, context })
 server.applyMiddleware({ app })
 // Subindo servidor com Express
 app.listen({ port: 4000 }, (): void =>
