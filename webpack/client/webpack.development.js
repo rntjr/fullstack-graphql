@@ -4,8 +4,8 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const { merge } = require('webpack-merge')
 const common = require('./webpack.config.js')
 
-const rootPath = path.resolve(__dirname, '..', '..', 'packages')
 const rootDir = path.resolve(__dirname, '..', '..')
+const rootPath = path.resolve(rootDir, 'packages', 'server')
 
 const mainConfig = {
   mode: 'development',

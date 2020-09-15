@@ -1,11 +1,9 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const { merge } = require('webpack-merge')
 const common = require('./webpack.config.js')
 
-const rootPath = path.resolve(__dirname, '..', '..', 'packages')
 const rootDir = path.resolve(__dirname, '..', '..')
+const rootPath = path.resolve(rootDir, 'packages')
 
 const mainConfig = {
   mode: 'production',
@@ -51,13 +49,7 @@ const rendererConfig = {
     path: path.resolve(rootDir, 'dist', 'client', 'renderer'),
     filename: 'js/[name].js',
     publicPath: './'
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(rootPath, 'web', 'public', 'index.html')
-    }),
-    'production' && new ReactRefreshWebpackPlugin()
-  ].filter(Boolean)
+  }
 }
 
 const isElectron =
